@@ -1,6 +1,8 @@
 //create a gamboard using the module pattern
 const Gameboard = (() => {
-  let gameBoardArray = [];
+  const boxDivs = document.getElementsByClassName("box");
+  const gameBoardArray = Array.prototype.slice.call(boxDivs);
+  console.log(gameBoardArray);
 })();
 
 //create a function for creating a player object
