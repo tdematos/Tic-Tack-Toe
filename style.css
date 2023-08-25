@@ -1,0 +1,30 @@
+:root {
+  --title-font-family: "Sedgwick Ave Display", cursive;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: var(--title-font-family);
+  font-size: 55px;
+  padding: 15px;
+}
+
+.game-box {
+  width: 500px;
+  height: 500px;
+  background-color: lightgray;
+  display: grid;
+  gap: 10px;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.game-box > * {
+  background-color: white;
+}
