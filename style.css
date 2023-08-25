@@ -16,15 +16,30 @@ body {
 }
 
 .game-box {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   background-color: lightgray;
   display: grid;
   gap: 10px;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 200px);
+  grid-template-columns: repeat(3, 200px);
 }
 
 .game-box > * {
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.x {
+  font-family: var(--title-font-family);
+  font-size: 200px;
+}
+
+.o {
+  position: relative;
+  top: 15px;
+  font-family: var(--title-font-family);
+  font-size: 200px;
 }
