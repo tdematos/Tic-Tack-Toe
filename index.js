@@ -2,7 +2,6 @@
 const Gameboard = (() => {
   const boxDivs = document.getElementsByClassName("box");
   const gameBoardArray = Array.prototype.slice.call(boxDivs);
-  console.log(gameBoardArray);
 })();
 
 //create a function for creating a player object
@@ -13,13 +12,20 @@ function Player(name) {
 //create a function for playing the game using the module pattern
 const GameControls = (() => {})();
 
-function addXMarks() {
-  const p = document.createElement("p");
-  const xMark = (document.querySelector("p").innerText = "X");
+//a function that allows players to add marks to gamebox
+function addXMarks() {}
 
-  selectBox.addeventlistener("click", function () {});
+const boxDivs = document.getElementsByClassName("box");
+const gameBoardArray = Array.prototype.slice.call(boxDivs);
+
+for (let i = 0; i < gameBoardArray.length; i++) {
+  const currentBox = gameBoardArray[i];
+
+  currentBox.addEventListener("click", function () {
+    const p = document.createElement("p");
+    // const xMark = (document.querySelector("p")
+
+    currentBox.appendChild(p);
+    p.innerText = "X";
+  });
 }
-
-//selecting all of the gameboard boxes
-//set html class to the same name
-//select class and push objects into the array
