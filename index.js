@@ -13,21 +13,29 @@ function Player(name) {
 const GameControls = (() => {})();
 
 //a function that allows players to add marks to gamebox
-function addXMarks() {}
+function addXMarks() {
+  for (let i = 0; i < gameBoardArray.length; i++) {
+    const currentBox = gameBoardArray[i];
 
-const boxDivs = document.getElementsByClassName("box");
-const gameBoardArray = Array.prototype.slice.call(boxDivs);
+    currentBox.addEventListener("click", function () {
+      let xChoice = "X";
+      let oChoice = "O";
 
-for (let i = 0; i < gameBoardArray.length; i++) {
-  const currentBox = gameBoardArray[i];
+      let currentChoice = xChoice;
 
-  currentBox.addEventListener("click", function () {
-    if (!currentBox.innerText) {
-      const p = document.createElement("p");
-      p.innerText = "X";
-      currentBox.appendChild(p);
-    }
-  });
+      if (currentChoice === xChoice) {
+        nextChoice = oChoice;
+      } else if (currentChoice === oChoice) {
+        nextChoice = xChoice;
+      }
+
+      if (!currentBox.innerText) {
+        const p = document.createElement("p");
+        p.innerText = currentChoice;
+        currentBox.appendChild(p);
+      }
+    });
+  }
 }
 
 //create different marks seperate x's and o's
