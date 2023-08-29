@@ -22,10 +22,18 @@ for (let i = 0; i < gameBoardArray.length; i++) {
   const currentBox = gameBoardArray[i];
 
   currentBox.addEventListener("click", function () {
-    const p = document.createElement("p");
-    // const xMark = (document.querySelector("p")
-
-    currentBox.appendChild(p);
-    p.innerText = "X";
+    if (!currentBox.innerText) {
+      const p = document.createElement("p");
+      p.innerText = "X";
+      currentBox.appendChild(p);
+    }
   });
 }
+
+//create different marks seperate x's and o's
+//create logic for placing marks
+//if x's go, then it can't go again the next mark will be o
+// add plaing method to player object
+//figure out how to access variable inside JS module
+// create logic for winning patterns 3 in a row
+//create an option to choose what player you will be
