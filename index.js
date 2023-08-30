@@ -17,22 +17,25 @@ function Player(gameBoardArray) {
   let oChoice = "O";
   let currentChoice = xChoice;
 
-  for (let i = 0; i < gameBoardArray.length; i++) {
-    const currentBox = gameBoardArray[i];
+  this.handleMarking = function () {
+    for (let i = 0; i < gameBoardArray.length; i++) {
+      const currentBox = gameBoardArray[i];
 
-    currentBox.addEventListener("click", function () {
-      if (!currentBox.innerText) {
-        const p = document.createElement("p");
-        p.innerText = currentChoice;
-        currentBox.appendChild(p);
+      currentBox.addEventListener("click", function () {
+        if (!currentBox.innerText) {
+          const p = document.createElement("p");
+          p.innerText = currentChoice;
+          currentBox.appendChild(p);
 
-        currentChoice = currentChoice === xChoice ? oChoice : xChoice;
-      }
-    });
-  }
+          currentChoice = currentChoice === xChoice ? oChoice : xChoice;
+        }
+      });
+    }
+  };
 }
 
 const player = Gameboard.createPlayer();
+player.handleMarking();
 //create a function for playing the game using the module pattern
 const GameControls = (() => {})();
 
