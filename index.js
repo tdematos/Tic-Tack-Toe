@@ -34,17 +34,22 @@ function Player(gameBoardArray) {
   };
 }
 
-const player = Gameboard.createPlayer();
-player.handleMarking();
 //create a function for playing the game using the module pattern
-const GameControls = (() => {})();
+function gameFlow() {
+  const player1 = Gameboard.createPlayer();
+  const player2 = Gameboard.createPlayer();
+  let player1Turn = player1.handleMarking();
+  let player2Turn = player2.handleMarking();
+
+  if (player1Turn) {
+    player1.handleMarking;
+  } else {
+    player2.handleMarking;
+  }
+}
 
 //a function that allows players to add marks to gamebox
 
-//create different marks seperate x's and o's
-//create logic for placing marks
-//if x's go, then it can't go again the next mark will be o
 // add plaing method to player object
-//figure out how to access variable inside JS module
 // create logic for winning patterns 3 in a row
 //create an option to choose what player you will be
