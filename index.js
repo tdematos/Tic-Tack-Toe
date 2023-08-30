@@ -2,41 +2,41 @@
 const Gameboard = (() => {
   const boxDivs = document.getElementsByClassName("box");
   const gameBoardArray = Array.prototype.slice.call(boxDivs);
+
+  return {
+    createPlayer: function () {
+      return new Player(gameBoardArray);
+    },
+  };
 })();
 
 //create a function for creating a player object
-function Player(name) {
-  this.name = name;
-}
+function Player(gameBoardArray) {
+  // this.name = name;
+  let xChoice = "X";
+  let oChoice = "O";
+  let currentChoice = xChoice;
 
-//create a function for playing the game using the module pattern
-const GameControls = (() => {})();
-
-//a function that allows players to add marks to gamebox
-function addXMarks() {
   for (let i = 0; i < gameBoardArray.length; i++) {
     const currentBox = gameBoardArray[i];
 
     currentBox.addEventListener("click", function () {
-      let xChoice = "X";
-      let oChoice = "O";
-
-      let currentChoice = xChoice;
-
-      if (currentChoice === xChoice) {
-        nextChoice = oChoice;
-      } else if (currentChoice === oChoice) {
-        nextChoice = xChoice;
-      }
-
       if (!currentBox.innerText) {
         const p = document.createElement("p");
         p.innerText = currentChoice;
         currentBox.appendChild(p);
+
+        currentChoice = currentChoice === xChoice ? oChoice : xChoice;
       }
     });
   }
 }
+
+const player = Gameboard.createPlayer();
+//create a function for playing the game using the module pattern
+const GameControls = (() => {})();
+
+//a function that allows players to add marks to gamebox
 
 //create different marks seperate x's and o's
 //create logic for placing marks
