@@ -2,6 +2,7 @@
 const Gameboard = (() => {
   const boxDivs = document.getElementsByClassName("box");
   const gameBoardArray = Array.prototype.slice.call(boxDivs);
+  console.log(gameBoardArray);
 
   return {
     createPlayer: function () {
@@ -50,10 +51,21 @@ function Player(gameBoardArray) {
 
       currentBox.addEventListener("click", clickHandler);
     }
+
+    function checkOutcome(array) {
+      if (
+        gameBoardArray[0].innerText === xChoice &&
+        gameBoardArray[1].innerText === xChoice &&
+        gameBoardArray[2].innerText === xChoice
+      ) {
+        alert("You Win");
+      }
+    }
+    checkOutcome();
   };
 }
 
-// Create a function for playing the game using the module pattern
+// Create a JS Module pattern for playing the game
 const GameFlow = (() => {
   const player1 = Gameboard.createPlayer();
   const player2 = Gameboard.createPlayer();
@@ -62,6 +74,5 @@ const GameFlow = (() => {
   currentPlayer.handleMarking(currentPlayer);
 })();
 
-// create logic for winning patterns 3 in a row
 //create an option to choose what player you will be
 //create button for reseting the game
