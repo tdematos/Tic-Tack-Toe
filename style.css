@@ -32,12 +32,12 @@ body {
   align-items: center;
 }
 
-.x {
+/* .x {
   font-family: var(--title-font-family);
   font-size: 200px;
-}
+} */
 
-.o {
+.box > * {
   position: relative;
   top: 15px;
   font-family: var(--title-font-family);

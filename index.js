@@ -28,6 +28,11 @@ function Player(gameBoardArray) {
           currentBox.appendChild(p);
 
           currentChoice = currentChoice === xChoice ? oChoice : xChoice;
+
+          currentBox.removeEventListener("click", arguments.callee);
+
+          currentPlayer = currentPlayer === player1 ? player2 : player1;
+          currentPlayer.handleMarking();
         }
       });
     }
@@ -38,16 +43,12 @@ function Player(gameBoardArray) {
 function gameFlow() {
   const player1 = Gameboard.createPlayer();
   const player2 = Gameboard.createPlayer();
-  let player1Turn = player1.handleMarking();
-  let player2Turn = player2.handleMarking();
+  let currentPlayer = player1;
 
-  if (player1Turn) {
-    player1.handleMarking;
-  } else {
-    player2.handleMarking;
-  }
+  currentPlayer.handleMarking(currentPlayer);
 }
 
+gameFlow();
 //a function that allows players to add marks to gamebox
 
 // add plaing method to player object
