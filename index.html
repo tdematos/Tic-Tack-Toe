@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="top-bar"><h1 class="title">Tic Tac Toe</h1></div>
-    <div class="control-box"><button>Reset</button></div>
+    <div class="control-box"><button class="reset-game">Reset</button></div>
 
     <div class="game-box">
       <div class="box" id="box-1"></div>
@@ -28,7 +28,20 @@
       <div class="box" id="box-8"></div>
       <div class="box" id="box-9"></div>
     </div>
-    <div class="results-box"></div>
+    <div class="results-box">
+      <div class="X-wincount-box">
+        <p class="counter-name">PLAYER X</p>
+        <p class="score">0</p>
+      </div>
+      <div class="draw-box">
+        <p class="counter-name">DRAW</p>
+        <p class="score">0</p>
+      </div>
+      <div class="O-wincount-box">
+        <p class="counter-name">PLAYER O</p>
+        <p class="score">0</p>
+      </div>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
