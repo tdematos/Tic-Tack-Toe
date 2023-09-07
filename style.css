@@ -6,17 +6,18 @@
 }
 
 body {
+  height: 100vh;
   background-color: rgb(50, 53, 54);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin: 0px;
 }
 
 .top-bar {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: rgb(50, 53, 54);
   width: 100%;
@@ -46,6 +47,7 @@ body {
   padding: 10px;
   border-radius: 10px;
   border: none;
+  margin-right: 15px;
 }
 
 .game-box {
@@ -108,4 +110,33 @@ body {
   animation: gradient 15s ease infinite;
   background-size: 400% 400%;
   color: white;
+}
+
+.counter-name {
+  font-family: var(--title-font-family);
+  margin-bottom: 5px;
+}
+
+.score {
+  font-family: var(--title-font-family);
+  font-size: 35px;
+  margin: 0px;
+  font-weight: bolder;
+}
+
+footer {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.created-by {
+  font-family: var(--title-font-family);
+  color: var(--titleColor-color);
+}
+
+.github-link {
+  text-decoration: none;
+  color: orange;
+  font-size: 25px;
 }
