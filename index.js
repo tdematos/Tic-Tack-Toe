@@ -93,6 +93,18 @@ const GameFlow = (() => {
   currentPlayer.handleMarking(currentPlayer);
 })();
 
-//create an option to choose what player you will be
 //create button for reseting the game
+const resetButton = document.querySelector(".reset-game");
+
+for (let i = 0; i < gameBoardArray.length; i++) {
+  const allBoxes = gameBoardArray;
+  const boxMrking = allBoxes.firstchild;
+  console.log(allBoxes);
+  boxMarking.innerText = "";
+}
+console.log(allBoxes);
+//create an option to choose what player you will be
+
 //create function that checks for draw
+//Make win counter functional
+//create winning condition modal
