@@ -32,6 +32,10 @@ body {
   color: var(--titleColor-color);
 }
 
+.O {
+  color: var(--hover-color);
+}
+
 .turn-section {
   display: flex;
   flex-direction: row;
@@ -90,7 +94,7 @@ body {
 }
 
 .game-box > * {
-  background-color: white;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;

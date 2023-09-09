@@ -1,121 +1,149 @@
 // Create a gamboard using the module pattern
-const Gameboard = (() => {
-  const boxDivs = document.getElementsByClassName("box");
-  const gameBoardArray = Array.prototype.slice.call(boxDivs);
-  console.log(gameBoardArray);
+document.addEventListener("DOMContentLoaded", function () {
+  const Gameboard = (() => {
+    const boxDivs = document.getElementsByClassName("box");
+    const gameBoardArray = Array.prototype.slice.call(boxDivs);
 
-  return {
-    createPlayer: function () {
-      return new Player(gameBoardArray);
-    },
-    getGameBoardArray: function () {
-      return gameBoardArray;
-    },
-  };
-})();
+    let xCounter = 0;
+    let oCounter = 0;
+    let drawCounter = 0;
 
-// Create a function for creating a player object
-function Player(gameBoardArray) {
-  let xChoice = "X";
-  let oChoice = "O";
-  let currentChoice = xChoice;
-
-  let player1; // Declare player1 and player2 variables
-  let player2;
-
-  function clickHandler() {
-    if (!this.innerText) {
-      const p = document.createElement("p");
-      p.innerText = currentChoice;
-      this.appendChild(p);
-
-      currentChoice = currentChoice === xChoice ? oChoice : xChoice;
-
-      this.removeEventListener("click", clickHandler);
-      currentPlayer = currentPlayer === player1 ? player2 : player1;
-
-      if (currentPlayer) {
-        currentPlayer.handleMarking(currentPlayer); // Call handleMarking with the current player if defined
+    function updateScores(player) {
+      if (player === "X") {
+        xCounter++;
+      } else if (player === "O") {
+        oCounter++;
+      } else if (player === "Draw") {
+        drawCounter++;
       }
-    }
-  }
 
-  this.handleMarking = function (player) {
-    if (!player1) {
-      player1 = this; // Initialize player1 on first call
-    } else if (!player2) {
-      player2 = this; // Initialize player2 on second call
-    }
+      const playerXScoreElement = document.querySelector("#player-x-score");
+      const playerOScoreElement = document.querySelector("#player-o-score");
+      const drawScoreElement = document.querySelector("#draw-score");
 
-    currentPlayer = this;
-
-    for (let i = 0; i < gameBoardArray.length; i++) {
-      const currentBox = gameBoardArray[i];
-
-      currentBox.addEventListener("click", clickHandler);
+      playerXScoreElement.innerText = xCounter;
+      playerOScoreElement.innerText = oCounter;
+      drawScoreElement.innerText = drawCounter;
     }
 
-    function checkOutcome(playerChoice) {
-      const winningCombos = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
+    return {
+      createPlayer: function () {
+        return new Player(gameBoardArray, updateScores);
+      },
+      getGameBoardArray: function () {
+        return gameBoardArray;
+      },
+    };
+  })();
 
-      for (const combo of winningCombos) {
-        const [a, b, c] = combo;
-        if (
-          gameBoardArray[a].innerText === playerChoice &&
-          gameBoardArray[b].innerText === playerChoice &&
-          gameBoardArray[c].innerText === playerChoice
-        ) {
-          alert("You Win!");
-          return;
+  // Create a function for creating a player object
+  function Player(gameBoardArray, updateScores) {
+    let xChoice = "X";
+    let oChoice = "O";
+    let currentChoice = xChoice;
+
+    let player1; // Declare player1 and player2 variables
+    let player2;
+
+    function clickHandler() {
+      if (!this.innerText) {
+        const p = document.createElement("p");
+        p.innerText = currentChoice;
+        this.appendChild(p);
+
+        currentChoice = currentChoice === xChoice ? oChoice : xChoice;
+
+        this.removeEventListener("click", clickHandler);
+        currentPlayer = currentPlayer === player1 ? player2 : player1;
+
+        if (currentPlayer) {
+          currentPlayer.handleMarking(currentPlayer); // Call handleMarking with the current player if defined
         }
       }
-
-      if (gameBoardArray.every((box) => box.innerText !== "")) {
-        alert("It's a Draw");
-      }
     }
-    checkOutcome(currentChoice);
-  };
+
+    this.handleMarking = function (player) {
+      if (!player1) {
+        player1 = this; // Initialize player1 on first call
+      } else if (!player2) {
+        player2 = this; // Initialize player2 on second call
+      }
+
+      currentPlayer = this;
+
+      for (let i = 0; i < gameBoardArray.length; i++) {
+        const currentBox = gameBoardArray[i];
+
+        currentBox.addEventListener("click", clickHandler);
+      }
+
+      function checkOutcome(playerChoice) {
+        const winningCombos = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ];
+
+        for (const combo of winningCombos) {
+          const [a, b, c] = combo;
+          if (
+            gameBoardArray[a].innerText === playerChoice &&
+            gameBoardArray[b].innerText === playerChoice &&
+            gameBoardArray[c].innerText === playerChoice
+          ) {
+            updateScores(playerChoice);
+            alert("You Win!");
+            return;
+          }
+        }
+
+        if (gameBoardArray.every((box) => box.innerText !== "")) {
+          updateScores("Draw");
+          alert("It's a Draw");
+        }
+      }
+      checkOutcome(currentChoice);
+    };
+  }
+
+  // Create a JS Module pattern for playing the game
+  const GameFlow = (() => {
+    const player1 = Gameboard.createPlayer();
+    const player2 = Gameboard.createPlayer();
+    let currentPlayer = player1;
+
+    currentPlayer.handleMarking(currentPlayer, Gameboard.updateScores);
+  })();
+
+  //create a function for reseting the game
+  function resetGame() {
+    const resetButton = document.querySelector(".reset-game");
+
+    resetButton.addEventListener("click", function () {
+      const allBoxes = Gameboard.getGameBoardArray();
+
+      for (let i = 0; i < allBoxes.length; i++) {
+        const currentBox = allBoxes[i];
+        while (currentBox.firstChild) {
+          currentBox.firstChild.remove();
+        }
+      }
+    });
+  }
   resetGame();
-}
-
-// Create a JS Module pattern for playing the game
-const GameFlow = (() => {
-  const player1 = Gameboard.createPlayer();
-  const player2 = Gameboard.createPlayer();
-  let currentPlayer = player1;
-
-  currentPlayer.handleMarking(currentPlayer);
-})();
-
-//create a function for reseting the game
-function resetGame() {
-  const resetButton = document.querySelector(".reset-game");
-
-  resetButton.addEventListener("click", function () {
-    const allBoxes = Gameboard.getGameBoardArray();
-
-    for (let i = 0; i < allBoxes.length; i++) {
-      const currentBox = allBoxes[i];
-      while (currentBox.firstChild) {
-        currentBox.firstChild.remove();
-      }
-    }
-  });
-}
-
+});
 //create function that checks for draw
+// function displayResults() {
+
 //Make win counter functional
+//Create a funciton for changing turn title severtime and event happens
 //create winning condition modal
 //create an option to choose what player you will be
 //refactor code
-//add jquery
+//add jquery to the code
+//Change color of x's in box to be green and o's to be pink
