@@ -97,7 +97,7 @@ const GameFlow = (() => {
   currentPlayer.handleMarking(currentPlayer);
 })();
 
-//create button for reseting the game
+//create a function for reseting the game
 function resetGame() {
   const resetButton = document.querySelector(".reset-game");
 
@@ -113,8 +113,9 @@ function resetGame() {
   });
 }
 
-//create an option to choose what player you will be
-
 //create function that checks for draw
 //Make win counter functional
 //create winning condition modal
+//create an option to choose what player you will be
+//refactor code
+//add jquery

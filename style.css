@@ -1,6 +1,7 @@
 :root {
-  --title-font-family: "Sedgwick Ave Display", cursive;
-  --titleColor-color: rgb(255, 255, 255);
+  --title-font-family: "Monoton", cursive;
+  --titleColor-color: rgb(47, 224, 255);
+  --hover-color: #e73c7e;
   --background-color: rgb(50, 53, 54);
   --accent-color: orange;
 }
@@ -31,6 +32,19 @@ body {
   color: var(--titleColor-color);
 }
 
+.turn-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.turn-title {
+  font-family: var(--title-font-family);
+  color: var(--hover-color);
+  font-size: 3rem;
+}
+
 .control-box {
   display: flex;
   flex-direction: row;
@@ -43,7 +57,7 @@ body {
 
 .reset-game {
   background-color: var(--accent-color);
-  color: var(--titleColor-color);
+  color: white;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -139,4 +153,8 @@ footer {
   text-decoration: none;
   color: orange;
   font-size: 25px;
+}
+
+.github-link:hover {
+  color: var(--hover-color);
 }
