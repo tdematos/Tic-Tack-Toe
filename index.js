@@ -8,6 +8,9 @@ const Gameboard = (() => {
     createPlayer: function () {
       return new Player(gameBoardArray);
     },
+    getGameBoardArray: function () {
+      return gameBoardArray;
+    },
   };
 })();
 
@@ -82,6 +85,7 @@ function Player(gameBoardArray) {
     }
     checkOutcome(currentChoice);
   };
+  resetGame();
 }
 
 // Create a JS Module pattern for playing the game
@@ -94,15 +98,21 @@ const GameFlow = (() => {
 })();
 
 //create button for reseting the game
-const resetButton = document.querySelector(".reset-game");
+function resetGame() {
+  const resetButton = document.querySelector(".reset-game");
 
-for (let i = 0; i < gameBoardArray.length; i++) {
-  const allBoxes = gameBoardArray;
-  const boxMrking = allBoxes.firstchild;
-  console.log(allBoxes);
-  boxMarking.innerText = "";
+  resetButton.addEventListener("click", function () {
+    const allBoxes = Gameboard.getGameBoardArray();
+
+    for (let i = 0; i < allBoxes.length; i++) {
+      const currentBox = allBoxes[i];
+      while (currentBox.firstChild) {
+        currentBox.firstChild.remove();
+      }
+    }
+  });
 }
-console.log(allBoxes);
+
 //create an option to choose what player you will be
 
 //create function that checks for draw
