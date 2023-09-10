@@ -1,5 +1,5 @@
-// Create a gamboard using the module pattern
 document.addEventListener("DOMContentLoaded", function () {
+  // Create a gamboard using the module pattern
   const Gameboard = (() => {
     const boxDivs = document.getElementsByClassName("box");
     const gameBoardArray = Array.prototype.slice.call(boxDivs);
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let oChoice = "O";
     let currentChoice = xChoice;
 
-    let player1; // Declare player1 and player2 variables
+    let player1;
     let player2;
 
     function clickHandler() {
@@ -57,16 +57,16 @@ document.addEventListener("DOMContentLoaded", function () {
         currentPlayer = currentPlayer === player1 ? player2 : player1;
 
         if (currentPlayer) {
-          currentPlayer.handleMarking(currentPlayer); // Call handleMarking with the current player if defined
+          currentPlayer.handleMarking(currentPlayer);
         }
       }
     }
 
     this.handleMarking = function (player) {
       if (!player1) {
-        player1 = this; // Initialize player1 on first call
+        player1 = this;
       } else if (!player2) {
-        player2 = this; // Initialize player2 on second call
+        player2 = this;
       }
 
       currentPlayer = this;
@@ -137,10 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   resetGame();
 });
-//create function that checks for draw
-// function displayResults() {
 
-//Make win counter functional
 //Create a funciton for changing turn title severtime and event happens
 //create winning condition modal
 //create an option to choose what player you will be

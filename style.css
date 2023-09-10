@@ -4,6 +4,7 @@
   --hover-color: #e73c7e;
   --background-color: rgb(50, 53, 54);
   --accent-color: orange;
+  --gamebox-border-radius: 25px;
 }
 
 body {
@@ -60,12 +61,17 @@ body {
 }
 
 .reset-game {
-  background-color: var(--accent-color);
+  background-color: var(--hover-color);
   color: white;
-  padding: 10px;
+  padding: 15px;
   border-radius: 10px;
   border: none;
   margin-right: 15px;
+  margin-top: 10px;
+}
+
+.reset-game:hover {
+  background-color: var(--titleColor-color);
 }
 
 .game-box {
@@ -79,6 +85,7 @@ body {
   gap: 15px;
   grid-template-rows: repeat(3, 200px);
   grid-template-columns: repeat(3, 200px);
+  border-radius: var(--gamebox-border-radius);
 }
 
 @keyframes gradient {
@@ -98,6 +105,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: var(--gamebox-border-radius);
 }
 
 .box > * {
