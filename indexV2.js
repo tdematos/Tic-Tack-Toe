@@ -56,8 +56,39 @@ function markingBoxes() {
       if (currentPlayer) {
         currentPlayer.handleMarking(currentPlayer);
       }
+
+      checkOutcome(currentChoice, Gameboard.gameBoardArray);
     });
   }
 }
 
 markingBoxes();
+//create a function for checking winning conditions
+function checkOutcome(playerChoice, gameBoardArray) {
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const combo of winningCombos) {
+    const [a, b, c] = combo;
+    if (
+      gameBoardArray[a].innerText === playerChoice &&
+      gameBoardArray[b].innerText === playerChoice &&
+      gameBoardArray[c].innerText === playerChoice
+    ) {
+      alert("You Win!");
+      return;
+    }
+  }
+
+  if (gameBoardArray.every((box) => box.innerText !== "")) {
+    alert("It's a Draw");
+  }
+}
