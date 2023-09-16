@@ -83,16 +83,22 @@ function checkOutcome(playerChoice, gameBoardArray) {
       gameBoardArray[b].innerText === playerChoice &&
       gameBoardArray[c].innerText === playerChoice
     ) {
+      updateScores(playerChoice);
       alert("You Win!");
       return;
     }
   }
 
   if (gameBoardArray.every((box) => box.innerText !== "")) {
+    updateScores("Draw");
     alert("It's a Draw");
   }
 }
 //create a function for updating the score on the scoreboard
+let xCounter = 0;
+let oCounter = 0;
+let drawCounter = 0;
+
 function updateScores(player) {
   if (player === "X") {
     xCounter++;
