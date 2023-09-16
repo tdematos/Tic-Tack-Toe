@@ -58,6 +58,8 @@ function markingBoxes() {
       }
 
       checkOutcome(currentChoice, Gameboard.gameBoardArray);
+
+      updateTitle();
     });
   }
 }
@@ -133,3 +135,14 @@ function resetGame() {
   });
 }
 resetGame();
+
+//create function for changing the title everytime it's a players turn
+function updateTitle() {
+  const titleOutput = document.querySelector("h2");
+
+  if (currentPlayer === player1) {
+    titleOutput.innerText = "Player 1 GO!";
+  } else if (currentPlayer === player2) {
+    titleOutput.innerText = "Player 2 GO!";
+  }
+}
