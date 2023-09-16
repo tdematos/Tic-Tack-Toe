@@ -92,3 +92,38 @@ function checkOutcome(playerChoice, gameBoardArray) {
     alert("It's a Draw");
   }
 }
+//create a function for updating the score on the scoreboard
+function updateScores(player) {
+  if (player === "X") {
+    xCounter++;
+  } else if (player === "O") {
+    oCounter++;
+  } else if (player === "Draw") {
+    drawCounter++;
+  }
+
+  const playerXScoreElement = document.querySelector("#player-x-score");
+  const playerOScoreElement = document.querySelector("#player-o-score");
+  const drawScoreElement = document.querySelector("#draw-score");
+
+  playerXScoreElement.innerText = xCounter;
+  playerOScoreElement.innerText = oCounter;
+  drawScoreElement.innerText = drawCounter;
+}
+
+//create function for that resets the board when a button is clicked
+function resetGame() {
+  const resetButton = document.querySelector(".reset-game");
+
+  resetButton.addEventListener("click", function () {
+    const allBoxes = Gameboard.gameBoardArray;
+
+    for (let i = 0; i < allBoxes.length; i++) {
+      const currentBox = allBoxes[i];
+      while (currentBox.firstChild) {
+        currentBox.firstChild.remove();
+      }
+    }
+  });
+}
+resetGame();
