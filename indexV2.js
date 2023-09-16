@@ -140,6 +140,32 @@ resetGame();
 function updateTitle() {
   const titleOutput = document.querySelector("h2");
 
+  // Check if there's a winner
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const combo of winningCombos) {
+    const [a, b, c] = combo;
+
+    if (
+      Gameboard.gameBoardArray[a].innerText === currentChoice &&
+      Gameboard.gameBoardArray[b].innerText === currentChoice &&
+      Gameboard.gameBoardArray[c].innerText === currentChoice
+    ) {
+      titleOutput.innerText = `${currentPlayer.name} WINS!`;
+      return; // Exit the function early if there's a winner
+    }
+  }
+
+  // If there's no winner, update the title based on the current player
   if (currentPlayer === player1) {
     titleOutput.innerText = "Player 1 GO!";
   } else if (currentPlayer === player2) {
