@@ -161,11 +161,15 @@ function updateTitle() {
       Gameboard.gameBoardArray[c].innerText === currentChoice
     ) {
       titleOutput.innerText = `${currentPlayer.name} WINS!`;
-      return; // Exit the function early if there's a winner
+      return;
     }
   }
 
-  // If there's no winner, update the title based on the current player
+  if (Gameboard.gameBoardArray.every((box) => box.innerText !== "")) {
+    titleOutput.innerText = "It's a Draw!";
+    return;
+  }
+
   if (currentPlayer === player1) {
     titleOutput.innerText = "Player 1 GO!";
   } else if (currentPlayer === player2) {
