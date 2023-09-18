@@ -67,6 +67,8 @@ function markingBoxes() {
 markingBoxes();
 //create a function for checking winning conditions
 function checkOutcome(playerChoice, gameBoardArray) {
+  const modal = document.querySelector("results-modal");
+
   const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -86,6 +88,7 @@ function checkOutcome(playerChoice, gameBoardArray) {
       gameBoardArray[c].innerText === playerChoice
     ) {
       updateScores(playerChoice);
+      modal.showModal();
       alert("You Win!");
       return;
     }

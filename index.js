@@ -138,9 +138,9 @@ document.addEventListener("DOMContentLoaded", function () {
   resetGame();
 });
 
-//Create a funciton for changing turn title severtime and event happens
 //create winning condition modal
 //create an option to choose what player you will be
+// Make code mobile friendly
 //refactor code
 //add jquery to the code
 //Change color of x's in box to be green and o's to be pink
