@@ -23,7 +23,13 @@ const player2 = createPlayer("Player 2");
 let currentPlayer = player1;
 
 // Create a JS Module pattern for playing the game
-const GameFlow = (() => {})();
+const GameFlow = (() => {
+  const resetButton = document.querySelector(".reset-game");
+
+  resetButton.addEventListener("click", () => {
+    resetGame();
+  });
+})();
 
 //create a function for handleing the clicking on the boxes
 
@@ -67,8 +73,7 @@ function markingBoxes() {
 markingBoxes();
 //create a function for checking winning conditions
 function checkOutcome(playerChoice, gameBoardArray) {
-  const modal = document.querySelector("results-modal");
-
+  const modal = document.querySelector("dialog");
   const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -88,8 +93,11 @@ function checkOutcome(playerChoice, gameBoardArray) {
       gameBoardArray[c].innerText === playerChoice
     ) {
       updateScores(playerChoice);
+
+      const modalMessage = document.querySelector(".results");
+      modalMessage.innerText = `Congratulations, ${currentPlayer.name} wins!`;
       modal.showModal();
-      alert("You Win!");
+      toggleModal();
       return;
     }
   }
@@ -124,18 +132,20 @@ function updateScores(player) {
 
 //create function for that resets the board when a button is clicked
 function resetGame() {
-  const resetButton = document.querySelector(".reset-game");
+  const allBoxes = Gameboard.gameBoardArray;
 
-  resetButton.addEventListener("click", function () {
-    const allBoxes = Gameboard.gameBoardArray;
-
-    for (let i = 0; i < allBoxes.length; i++) {
-      const currentBox = allBoxes[i];
-      while (currentBox.firstChild) {
-        currentBox.firstChild.remove();
-      }
+  for (let i = 0; i < allBoxes.length; i++) {
+    const currentBox = allBoxes[i];
+    while (currentBox.firstChild) {
+      currentBox.firstChild.remove();
     }
-  });
+  }
+
+  const titleOutput = document.querySelector("h2");
+  titleOutput.innerText = "Start Game!";
+
+  currentChoice = "X";
+  currentPlayer = player1;
 }
 resetGame();
 
@@ -178,4 +188,26 @@ function updateTitle() {
   } else if (currentPlayer === player2) {
     titleOutput.innerText = "Player 2 GO!";
   }
+}
+// function for toggling modal
+function toggleModal() {
+  const quitButton = document.querySelector(".quit");
+  const nextRoundButton = document.querySelector(".next-round");
+
+  quitButton.addEventListener("click", () => {
+    const playerXScoreElement = document.querySelector("#player-x-score");
+    const playerOScoreElement = document.querySelector("#player-o-score");
+    const drawScoreElement = document.querySelector("#draw-score");
+
+    playerXScoreElement.innerText = 0;
+    playerOScoreElement.innerText = 0;
+    drawScoreElement.innerText = 0;
+    modal.close();
+    resetGame();
+  });
+
+  nextRoundButton.addEventListener("click", () => {
+    modal.close();
+    resetGame();
+  });
 }

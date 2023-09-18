@@ -172,7 +172,7 @@ footer {
 }
 
 /* code for styling results modal */
-.modal {
+dialog[open] {
   width: 100%;
   height: 12rem;
   display: flex;
@@ -187,11 +187,16 @@ footer {
   border: none;
 }
 
+dialog::backdrop {
+  background-color: lightgray;
+  opacity: 0.1;
+}
+
 .results {
   margin: 10px;
   font-family: var(--title-font-family);
   color: var(--titleColor-color);
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .quit {
