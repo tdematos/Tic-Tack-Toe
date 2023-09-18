@@ -211,3 +211,10 @@ function toggleModal() {
     resetGame();
   });
 }
+
+//create an option to choose what player you will be
+// Make code mobile friendly
+//refactor code
+//add jquery to the code
+//Change color of x's in box to be green and o's to be pink
+//Create starting page

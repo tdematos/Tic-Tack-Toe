@@ -222,3 +222,63 @@ dialog::backdrop {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+
+@media all and (max-width: 1250px) {
+  .game-box {
+    margin: 10px;
+    width: 480px;
+    height: 500px;
+    gap: 15px;
+    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, 150px);
+  }
+
+  .box > * {
+    position: relative;
+    top: 5px;
+    font-family: var(--title-font-family);
+    font-size: 140px;
+  }
+}
+
+@media all and (max-width: 390px) {
+  .game-box {
+    margin: 10px;
+    width: 330px;
+    height: 400px;
+    gap: 15px;
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 100px);
+  }
+
+  .box > * {
+    position: relative;
+    top: 5px;
+    font-family: var(--title-font-family);
+    font-size: 140px;
+  }
+
+  .results-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .results-box > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin: 5px;
+    margin-top: 20px;
+    height: 6rem;
+    width: 14rem;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    animation: gradient 15s ease infinite;
+    background-size: 400% 400%;
+    color: white;
+  }
+}
