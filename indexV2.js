@@ -74,6 +74,7 @@ markingBoxes();
 //create a function for checking winning conditions
 function checkOutcome(playerChoice, gameBoardArray) {
   const modal = document.querySelector("dialog");
+  const modalMessage = document.querySelector(".results");
   const winningCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -94,7 +95,6 @@ function checkOutcome(playerChoice, gameBoardArray) {
     ) {
       updateScores(playerChoice);
 
-      const modalMessage = document.querySelector(".results");
       modalMessage.innerText = `Congratulations, ${currentPlayer.name} wins!`;
       modal.showModal();
       toggleModal();
@@ -104,7 +104,9 @@ function checkOutcome(playerChoice, gameBoardArray) {
 
   if (gameBoardArray.every((box) => box.innerText !== "")) {
     updateScores("Draw");
-    alert("It's a Draw");
+    modalMessage.innerText = `It's a draw!`;
+    modal.showModal();
+    toggleModal();
   }
 }
 //create a function for updating the score on the scoreboard
@@ -212,6 +214,7 @@ function toggleModal() {
   });
 }
 
+//fix big that you cannot mark multiple times
 //create an option to choose what player you will be
 // Make code mobile friendly
 //refactor code
